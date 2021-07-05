@@ -1,0 +1,15 @@
+[package]
+name = "multi_core_os"
+version = "0.1.0"
+authors = ["PG_MANA <pg_mana@taprix.org>"]
+categories = ["os", "operating-system"]
+license = "Apache-2.0"
+edition = "2018"
+
+[profile.release]
+#lto = true
+#opt-level = 1
+debug=true
+
+[lib]
+crate-type = ["staticlib"]

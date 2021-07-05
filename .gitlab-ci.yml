@@ -1,0 +1,18 @@
+image:    "opensuse/tumbleweed:latest"
+stages:
+  - build
+
+build:
+  stage:  build
+  script:
+    - zypper in -y curl grub2 grub2-x86_64-efi mtools make gcc lld xorriso
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
+    - source ~/.cargo/env
+    - rustc --version
+    - cargo --version
+    - rustup component add rust-src
+    - cargo install cargo-xbuild
+    - make iso
+  artifacts:
+    paths:
+      - bin/
