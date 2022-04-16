@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(lang_items)]
+#![feature(let_chains)]
 #![feature(panic_info_message)]
 
 #[macro_use]
@@ -17,7 +17,8 @@ use ap::init_ap;
 use memory::{MemoryManager, MultibootTagElfSections, MultibootTagMemoryMap};
 use print::PRINT_MANAGER;
 
-use core::panic;use core::arch::asm;
+use core::arch::asm;
+use core::panic;
 
 #[repr(C)]
 struct MultibootTag {
@@ -173,17 +174,9 @@ fn init(multiboot_info_address: usize) {
 #[panic_handler]
 #[no_mangle]
 pub fn panic(info: &panic::PanicInfo) -> ! {
-    let location = info.location();
-    let message = info.message();
-
     println!("\n!!!! Kernel Panic !!!!");
-    if location.is_some() && message.is_some() {
-        println!(
-            "Line {} in {}\nMessage: {}",
-            location.unwrap().line(),
-            location.unwrap().file(),
-            message.unwrap()
-        );
+    if let Some(location) = info.location() && let Some(message) = info.message() {
+        println!("Line {} in {}: {}", location.line(), location.file(), message);
     }
     loop {
         unsafe { asm!("hlt") };
