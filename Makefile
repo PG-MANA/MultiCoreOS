@@ -70,6 +70,6 @@ kernel.elf : $(BOOT_SYS_LIST)
 	-$(STRIP) $(MAKE_BINDIR)kernel.elf
 
 $(RUST_OBJ) :  .FORCE
-	$(CARGO) xbuild --release --target $(RUST_TARGET_JSON)
+	$(CARGO) build --release --target $(RUST_TARGET_JSON)
 
 .FORCE:

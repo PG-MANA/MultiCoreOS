@@ -5,6 +5,8 @@ use super::acpi_pm_timer::AcpiPmTimer;
 use super::local_apic::{get_apic_id, send_interrupt_command};
 use super::memory::MemoryManager;
 use super::MEMORY_MANAGER;
+
+use core::arch::asm;
 use core::sync::atomic::AtomicBool;
 
 /// 各プロセッサが個別に持つ構造体

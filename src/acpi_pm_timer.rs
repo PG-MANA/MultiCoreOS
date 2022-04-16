@@ -3,6 +3,8 @@
 //! ACPIをサポートしているPCに搭載されている周波数3579545Hzのカウントアップタイマーです。
 //! 今回はコアの初期化の際のビジーウェイトに使用してます。
 
+use core::arch::asm;
+
 pub struct AcpiPmTimer {
     port: usize,
     is_32_bit_counter: bool,

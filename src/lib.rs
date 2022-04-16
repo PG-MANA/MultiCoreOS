@@ -1,8 +1,5 @@
 #![no_std]
-#![feature(const_fn_fn_ptr_basics)]
-#![feature(global_asm)]
 #![feature(lang_items)]
-#![feature(asm)]
 #![feature(panic_info_message)]
 
 #[macro_use]
@@ -20,7 +17,7 @@ use ap::init_ap;
 use memory::{MemoryManager, MultibootTagElfSections, MultibootTagMemoryMap};
 use print::PRINT_MANAGER;
 
-use core::panic;
+use core::panic;use core::arch::asm;
 
 #[repr(C)]
 struct MultibootTag {

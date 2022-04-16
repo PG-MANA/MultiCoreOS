@@ -3,6 +3,8 @@
 //! 送信専用のモジュールです。受信のための初期化などは一切省いております。
 //! また簡略化のため、ロック機構なども省略しています。
 
+use core::arch::asm;
+
 pub struct SerialPortManager {
     port: u16,
 }
